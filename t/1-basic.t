@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 # $File: //member/autrijus/Lingua-ZH-Toke/t/1-basic.t $ $Author: autrijus $
-# $Revision: #1 $ $Change: 3663 $ $DateTime: 2003/01/19 19:46:28 $
+# $Revision: #2 $ $Change: 9669 $ $DateTime: 2004/01/11 13:11:05 $
 
 use strict;
 use Test;
@@ -23,12 +23,12 @@ ok($tmp = $tmp->[0], 'ㄑㄩㄝˋ',	    'Tokenization - Pronounciation');
 ok($tmp = $tmp->[2], 'ㄝ',	    'Tokenization - Phonetic');
 
 # Magic histogram via hash deferencing
-ok($token->{'那人卻在'},    1,	    'Histogram - Fragment');
-ok($token->{'意興闌珊'},    1,	    'Histogram - Phrase');
-ok($token->{'發意興闌'},    undef,  'Histogram - No Phrase');
-ok($token->{'珊'},	    2,	    'Histogram - Character');
-ok($token->{'ㄧˋ'},	    2,	    'Histogram - Pronounciation');
-ok($token->{'ㄨ'},	    3,	    'Histogram - Phonetic');
+ok($token->{"那人卻在"},    1,	    'Histogram - Fragment');
+ok($token->{"意興闌珊"},    1,	    'Histogram - Phrase');
+ok($token->{"發意興闌"},    undef,  'Histogram - No Phrase');
+ok($token->{"珊"},	    2,	    'Histogram - Character');
+ok($token->{"ㄧˋ"},	    2,	    'Histogram - Pronounciation');
+ok($token->{"ㄨ"},	    3,	    'Histogram - Phonetic');
 
 my @phrases = qw(那 人 卻在 燈火 闌珊 處 益發 意興闌珊);
 

@@ -1,5 +1,5 @@
 # $File: //member/autrijus/Lingua-ZH-Toke/README $ $Author: autrijus $
-# $Revision: #1 $ $Change: 3663 $ $DateTime: 2003/01/19 19:46:28 $
+# $Revision: #2 $ $Change: 9667 $ $DateTime: 2004/01/11 12:56:49 $
 
 This is the README file for Lingua::ZH::Toke, a Chinese Tokenizer on
 steroids; it's a thin wrapper around Lingua::ZH::TaBE, as well as its
@@ -22,16 +22,9 @@ make install
 
 * Copyright
 
-Copyright 2003 by Autrijus Tang <autrijus@autrijus.org>.
+Copyright 2003, 2004 by Autrijus Tang <autrijus@autrijus.org>.
 
 All rights reserved.  You can redistribute and/or modify
 this bundle under the same terms as Perl itself.
 
 See <http://www.perl.com/perl/misc/Artistic.html>.
-
-# Local variables:
-# c-indentation-style: bsd
-# c-basic-offset: 4
-# indent-tabs-mode: nil
-# End:
-# vim: expandtab shiftwidth=4:

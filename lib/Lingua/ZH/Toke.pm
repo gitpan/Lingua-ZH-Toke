@@ -1,19 +1,30 @@
-# $File: //member/autrijus/Lingua-ZH-Toke/Toke.pm $ $Author: autrijus $
-# $Revision: #2 $ $Change: 3666 $ $DateTime: 2003/01/19 19:47:11 $
+# $File: //member/autrijus/Lingua-ZH-Toke/lib/Lingua/ZH/Toke.pm $ $Author: autrijus $
+# $Revision: #2 $ $Change: 9667 $ $DateTime: 2004/01/11 12:56:49 $
 
 package Lingua::ZH::Toke;
-$Lingua::ZH::Toke::VERSION = '0.01';
+$Lingua::ZH::Toke::VERSION = '0.02';
 
 use strict;
 use Lingua::ZH::TaBE ();
 
+=encoding big5
+
 =head1 NAME
 
-Lingua::ZH::Toke - Chinese Tokenizer on steroids
+Lingua::ZH::Toke - Chinese Tokenizer
+
+=head1 VERSION
+
+This document describes version 0.02 of Lingua::ZH::Toke, released
+January 11, 2004.
 
 =head1 SYNOPSIS
 
-    use Lingua::ZH::Toke;	# add 'utf8' to use unicode strings
+    use Lingua::ZH::Toke;
+
+    # -- if inputs are unicode strings, use the two lines below instead
+    # use utf8;
+    # use Lingua::ZH::Toke 'utf8';
 
     # Create Lingua::ZH::Toke::Sentence object (->Sentence also works)
     my $token = Lingua::ZH::Toke->new( '那人卻在/燈火闌珊處/益發意興闌珊' );
@@ -36,7 +47,7 @@ Lingua::ZH::Toke - Chinese Tokenizer on steroids
     # Iteration over fragments
     while (my $fragment = <$token>) {
 	# Iteration over phrases
-	while (my $phrase = <$token>) {
+	while (my $phrase = <$fragment>) {
 	    # ...
 	}
     }
@@ -67,16 +78,22 @@ feature to work.
 =head1 METHODS
 
 The constructor methods correspond to the six object levels:
-C<-&gt;Sentence>, C<-&gt;Fragment>, C<-&gt;Phrase>, C<-&gt;Character>,
-C<-&gt;Pronounciation> and C<-&gt;Phonetic>.  Each of them takes one
+C<-E<gt>Sentence>, C<-E<gt>Fragment>, C<-E<gt>Phrase>, C<-E<gt>Character>,
+C<-E<gt>Pronounciation> and C<-E<gt>Phonetic>.  Each of them takes one
 string argument, representing the string to be tokenized.
 
-The C<-&gt;new> method is an alias to C<-&gt;>Sentence>.
+The C<-E<gt>new> method is an alias to C<-E<gt>>Sentence>.
 
-All object methods, except C<-&gt;new>, are passed to the underlying
+All object methods, except C<-E<gt>new>, are passed to the underlying
 B<Lingua::ZH::TaBE> object.
 
 =head1 CAVEATS
+
+Under I<utf8> mode, you may sometimes need to explicitly stringify
+the return values, so their utf8 flag can be properly set:
+
+    $value = $token->[0];	# this may or may not work
+    $value = "$token->[0]";	# this is guaranteed to work
 
 This module does not care about efficiency or memory consumption yet,
 hence it's likely to fail miserably if you demand either of them.
@@ -130,17 +147,20 @@ sub import {
 
 use overload (
     '""'  => sub { $_b2u->(@_) },
-    '0+'  => sub { scalar @{$_[0]} },
+    '0+'  => sub {
+	# scalar @{$_[0]}
+	# ... somehow look up freq ...
+    },
     '@{}' => sub {
 	my $meth = ${$_[0]}->can(lc("$next{_tabe($_[0])}s")) or return [];
 	[ map bless(\$_, _toke($_)), $meth->(${$_[0]}) ]
     },
     '%{}' => sub {
 	$hist{overload::StrVal(${$_[0]})} ||= do {
-	    my %o; $o{$_}++ for @{$_[0]};
+	    my %o; $o{"$_"}++ for @{$_[0]};
 	    my %h;
 	    for my $c (@{$_[0]}) {
-		$h{$_} += $c->{$_} for keys %$c;
+		$h{"$_"} += $c->{"$_"} for keys %$c;
 	    }
 	    +{ %o, %h };
 	};
@@ -189,7 +209,7 @@ Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>
 
 =head1 COPYRIGHT
 
-Copyright 2003 by Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>.
+Copyright 2003, 2004 by Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

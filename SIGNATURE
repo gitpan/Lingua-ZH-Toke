@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.21.
+signed via the Module::Signature module, version 0.37.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,19 +14,20 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 b60be280d51e5373d43a7efff9ac8f6affd488c3 Changes
-SHA1 da7333b3cb3e6bf2f031998cc966ddefdc5e0ab3 MANIFEST
-SHA1 6eeab9bfa1ecccf0eeb3ec2b8e27570b574affe9 Makefile.PL
-SHA1 b93e6b73e5c75ee2b2a871d65318682ebf35f34c README
-SHA1 2b409729d1e14c50db996ef07cfd55cc10483645 Toke.pm
+SHA1 f49c218147b7197704d0e7b57f36fcfa73d624f0 Changes
+SHA1 c1ff974132c82e2766905f232b67fe7c3161a876 MANIFEST
+SHA1 989b5e1db4e3a09ffc9b25b0c60a0547ee26fd69 META.yml
+SHA1 e0d3affaca8416e3e99cbc97b1a2a77c1189eb92 Makefile.PL
+SHA1 5293ff6cde78f4f95112580b470b61d754f90f72 README
+SHA1 538f40d394a56abf0809da60c67c4c1c2fe5a28c lib/Lingua/ZH/Toke.pm
 SHA1 ecb5622624a2a92813652d2442e565ec9511dcae t/0-signature.t
-SHA1 b0d1d55824efb326b7e46db9bab7af91509bd1bb t/1-basic.t
-SHA1 49ee9d484d36b55dfde05a1f8e68c1124e5bfc93 t/2-utf8.t
-SHA1 7c3825a04882da256ad396e585173be51dfb4839 t/3-encoding.t
+SHA1 13576990a58db18814b600e020ccfe30835ba881 t/1-basic.t
+SHA1 db1f543bce2da7afaf3dde0bf26d5b1ce6b0a610 t/2-utf8.t
+SHA1 f2e4181b02f08cbfbf01e14cf59eb588cc6d3970 t/3-encoding.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.2.1 (FreeBSD)
 
-iD8DBQE+KwmstLPdNzw1AaARAnEuAKCa4gEzHNrn4ZOhOVp7oOH51PlBtACfeZ+3
-gKpZgkH2Xj8y8oWBFwQltQY=
-=SOWm
+iD8DBQFAAUuMtLPdNzw1AaARAsGUAJ0efBifMn/folJwtfQAKe+1ZuYpAgCeIILF
+VGwC75pWSjX8JtYLffRVMac=
+=kmNM
 -----END PGP SIGNATURE-----
